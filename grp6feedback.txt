@@ -1,0 +1,48 @@
+Group 6 Feedback
+
+1. The views package seems like a strange choice to put everything in.
+
+2. However your code in general is well organized and easy to follow.
+
+3. On the Inventory class if you find yourself doing this:
+------------------------------------------------------
+int count = 0;
+for (Item item : itemsList) {
+	selectionArr[count] = item.toString();
+	count++;
+}
+------------------------------------------------------
+Consider using just a regular for loop instead.
+
+4. Also on Inventory class, the readFile method throws the FileNotFoundException:
+------------------------------------------------------
+public boolean readFile() throws FileNotFoundException {
+------------------------------------------------------
+
+The FileNotFoundException is on account of what is on line 18, since line 18
+is part of a try block, you can instead just catch the FileNotFoundException. 
+------------------------------------------------------
+	public boolean readFile()  {
+
+		File inputFile = new File("vendingmachine.csv");
+		try (Scanner fileScanner = new Scanner(inputFile)) {
+			if (!inputFile.exists()) {
+				return false;
+			}
+
+			while (fileScanner.hasNextLine()) {
+				// code
+
+			}
+
+		}
+		
+		catch (FileNotFoundException e) {
+			
+		}
+
+		return true;
+	}
+------------------------------------------------------
+
+5. There doesn't seem to be a way to back out of the Select Product menu.
